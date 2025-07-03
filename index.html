@@ -344,45 +344,38 @@
             }
         }
 
-        // --- WEATHER FUNCTION (using Gemini API) ---
+        // --- MOCK WEATHER DATA ---
+        // NOTE: A live API call requires a secure API key and server-side handling,
+        // which is beyond the scope of this client-side example. This mock data
+        // simulates the weather feature for demonstration purposes on platforms like Cloudflare.
+        const mockWeatherData = {
+            "Macon, GA": { high: 92, low: 72, description: "Sunny and hot", icon: "☀️" },
+            "Chattanooga, TN": { high: 88, low: 68, description: "Partly cloudy", icon: "⛅" },
+            "Sevierville, TN": { high: 85, low: 65, description: "Chance of afternoon showers", icon: "🌦️" },
+            "Townsend, TN": { high: 83, low: 62, description: "Clear skies", icon: "☀️" },
+            "Pigeon Forge, TN": { high: 86, low: 66, description: "Scattered thunderstorms", icon: "⛈️" },
+            "Default": { high: 80, low: 60, description: "Pleasant weather", icon: "😊" }
+        };
+
+        // --- WEATHER FUNCTION (using Mock Data) ---
         async function fetchWeather(city, dateStr, dayIndex) {
             const weatherState = getStateForDay(dayIndex, 'weather', null);
             if (weatherState) {
                 return `<p class="text-4xl">${weatherState.icon} ${weatherState.high}°F</p><p class="text-blue-700">${weatherState.description}</p>`;
             }
 
-            const prompt = `Provide a plausible weather forecast for ${city} on ${dateStr}. Respond ONLY with a single JSON object with keys "high" (number), "low" (number), "description" (string), and "icon" (a single emoji character). Example: {"high": 85, "low": 68, "description": "Partly cloudy with a chance of rain", "icon": "🌦️"}`;
-            
             try {
-                let chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
-                const payload = { contents: chatHistory };
-                const apiKey = ""; // Provided by environment
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-                
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-                
-                const result = await response.json();
-                
-                if (result.candidates && result.candidates[0].content.parts[0].text) {
-                    let responseText = result.candidates[0].content.parts[0].text;
-                    
-                    // Clean the response to remove markdown code block fences if they exist
-                    if (responseText.startsWith("```json")) {
-                        responseText = responseText.replace(/^```json\s*/, '').replace(/```$/, '').trim();
-                    }
+                // Simulate a network delay to mimic a real API call
+                await new Promise(resolve => setTimeout(resolve, 500)); 
 
-                    const weatherJson = JSON.parse(responseText);
-                    updateStateForDay(dayIndex, 'weather', weatherJson);
-                    return `<p class="text-4xl">${weatherJson.icon} ${weatherJson.high}°F</p><p class="text-blue-700">${weatherJson.description}</p>`;
-                } else {
-                    return "Weather data not available.";
-                }
+                const weatherJson = mockWeatherData[city] || mockWeatherData["Default"];
+                
+                // Save the mock data to state so it persists on the page
+                updateStateForDay(dayIndex, 'weather', weatherJson);
+                return `<p class="text-4xl">${weatherJson.icon} ${weatherJson.high}°F</p><p class="text-blue-700">${weatherJson.description}</p>`;
+
             } catch (error) {
-                console.error("Weather fetch error:", error);
+                console.error("Weather creation error:", error);
                 return "Could not load weather.";
             }
         }
