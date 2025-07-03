@@ -93,6 +93,26 @@
             text-align: center;
             color: #6b7280;
         }
+        .remove-photo-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background-color: rgba(0,0,0,0.6);
+            color: white;
+            border: none;
+            border-radius: 9999px;
+            width: 24px;
+            height: 24px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .remove-photo-btn:hover {
+            background-color: rgba(255, 0, 0, 0.8);
+        }
         /* Scrollbar styles */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #f1f1f1; }
@@ -174,33 +194,21 @@
                 stops: [ { location: "Pigeon Forge, TN", duration: "All Day", coords: [35.7884, -83.5543], activities: [ { type: 'main', name: "Paula Deen’s Lumberjack Feud Show & Adventure Park", details: "Watch lumberjacks compete, then try challenges yourself. ($$$)", url: "https://lumberjackfeud.com/" }, { type: 'outdoor', name: "Goats on the Roof", details: "A quirky stop with a coaster, and goats! ($)", url: "https://www.goatsontheroofofthesmokies.com/" }, { type: 'outdoor', name: "Crave Golf Club", details: "A highly-rated and fun mini-golf course. ($$)", url: "https://www.cravegolf.com/" }, { type: 'indoor', name: "Ripley’s Believe It or Not!", details: "Explore the odd and unusual. ($$$)", url: "https://www.ripleys.com/gatlinburg/odditorium/" }, ], food: [ { name: "Holston’s Kitchen", cuisine: "A reliable favorite ($$)", url: "https://www.holstonskitchen.com/" }, { name: "Five Oaks Farm Kitchen", cuisine: "Perfect for a final Southern meal ($$)", url: "https://fiveoaksfarmkitchen.com/" }, { name: "Big Daddy’s Pizzeria", cuisine: "One last pizza pie! ($$)", url: "https://www.bigdaddyspizzeria.net/" }, ] } ]
             },
             {
-                day: 9, date: "Saturday, August 2", title: "Check Out & Head Home",
-                weatherLocation: "Valdosta, GA",
+                day: 9, date: "Saturday, August 2", title: "Drive Home to Lakeland, FL",
+                weatherLocation: "Lakeland, FL",
                 stops: [
                     { 
-                        location: "Pigeon Forge / Gatlinburg, TN", 
-                        duration: "Morning", 
-                        coords: [35.7884, -83.5543], 
+                        location: "On the Road", 
+                        duration: "Full Day Drive", 
+                        coords: [28.0395, -81.9498], 
                         activities: [ 
-                            { type: 'main', name: "Check Out of Accommodation", details: "Time to pack up and head home!", url: null },
-                            { type: 'outdoor', name: "Last Minute Souvenir Shopping", details: "Grab some gifts before you leave. ($$)", url: null }
+                            { type: 'main', name: "Check Out & Hit the Road", details: "Time to head home!", url: null },
+                            { type: 'indoor', name: "Listen to Podcasts or an Audiobook", details: "Keep the drive interesting. (Free)", url: null }
                         ], 
                         food: [ 
-                            { name: "Crockett's Breakfast Camp", cuisine: "A final hearty breakfast. ($$)", url: "https://crockettsbreakfastcamp.com/" },
-                            { name: "The Donut Friar", cuisine: "Grab some donuts for the road. ($)", url: "https://www.donut-friar.com/" }
+                            { name: "Grab a Quick Breakfast", cuisine: "Something fast before you leave. ($)", url: null },
+                            { name: "Stop for Lunch on the Highway", cuisine: "Find a convenient spot. ($$)", url: null }
                         ] 
-                    },
-                    {
-                        location: "On the Road",
-                        duration: "Afternoon / Evening",
-                        coords: [30.8333, -83.2803], // Valdosta, GA coordinates
-                        activities: [
-                            { type: 'indoor', name: "Listen to a Road Trip Playlist", details: "Keep the good times rolling!", url: null }
-                        ],
-                        food: [
-                            { name: "Cook Out", cuisine: "Classic drive-thru trays. ($)", url: "https://cookout.com/" },
-                            { name: "Buc-ee's", cuisine: "A must-stop for snacks and clean restrooms. ($$)", url: "https://buc-ees.com/" }
-                        ]
                     }
                 ]
             }
@@ -268,6 +276,25 @@
             return cardContent;
         }
 
+        function renderPhotoUploader(dayIndex, stop, stopIndex) {
+            const photoState = getStateForDay(dayIndex, 'photos', {});
+            const photoSrc = photoState[stop.location] || '';
+            
+            if (photoSrc) {
+                return `
+                    <img src="${photoSrc}" alt="Uploaded photo for ${stop.location}">
+                    <button class="remove-photo-btn" data-day="${dayIndex}" data-stop-location="${stop.location}">×</button>
+                `;
+            } else {
+                return `
+                    <label for="photo-upload-${dayIndex}-${stopIndex}" class="photo-upload-label">
+                        <span>+ Add Photo</span>
+                    </label>
+                    <input type="file" id="photo-upload-${dayIndex}-${stopIndex}" class="hidden" accept="image/*" data-day="${dayIndex}" data-stop-location="${stop.location}">
+                `;
+            }
+        }
+
         async function displayDay(dayIndex) {
             const dayData = itineraryData[dayIndex];
             contentEl.innerHTML = '<div class="text-center p-8">Loading your day...</div>';
@@ -295,9 +322,6 @@
                 </div>`;
             
             dayData.stops.forEach((stop, stopIndex) => {
-                const photoState = getStateForDay(dayIndex, 'photos', {});
-                const photoSrc = photoState[stop.location] || '';
-                
                 contentHTML += `
                     <div class="mb-8">
                         <div class="flex items-center mb-4">
@@ -316,11 +340,8 @@
                             </div>
                             <div class="md:col-span-1">
                                 <h4 class="text-xl font-semibold mb-3">My Photo</h4>
-                                <div class="photo-upload-container">
-                                    <label for="photo-upload-${stopIndex}" class="photo-upload-label" id="photo-label-${stopIndex}">
-                                        ${photoSrc ? `<img src="${photoSrc}" alt="Uploaded photo for ${stop.location}">` : '<span>+ Add Photo</span>'}
-                                    </label>
-                                    <input type="file" id="photo-upload-${stopIndex}" class="hidden" accept="image/*" data-day="${dayIndex}" data-stop-location="${stop.location}">
+                                <div class="photo-upload-container" id="photo-container-${dayIndex}-${stopIndex}">
+                                    ${renderPhotoUploader(dayIndex, stop, stopIndex)}
                                 </div>
                             </div>
                         </div>
@@ -328,7 +349,7 @@
             });
 
             if (dayData.lodging) {
-                contentHTML += `...`; // Lodging HTML here, simplified for brevity
+                // Simplified for brevity
             }
 
             contentHTML += `
@@ -376,16 +397,13 @@
         }
 
         // --- MOCK WEATHER DATA ---
-        // NOTE: A live API call requires a secure API key and server-side handling,
-        // which is beyond the scope of this client-side example. This mock data
-        // simulates the weather feature for demonstration purposes on platforms like Cloudflare.
         const mockWeatherData = {
             "Macon, GA": { high: 92, low: 72, description: "Sunny and hot", icon: "☀️" },
             "Chattanooga, TN": { high: 88, low: 68, description: "Partly cloudy", icon: "⛅" },
             "Sevierville, TN": { high: 85, low: 65, description: "Chance of afternoon showers", icon: "🌦️" },
             "Townsend, TN": { high: 83, low: 62, description: "Clear skies", icon: "☀️" },
             "Pigeon Forge, TN": { high: 86, low: 66, description: "Scattered thunderstorms", icon: "⛈️" },
-            "Valdosta, GA": { high: 93, low: 75, description: "Very hot and sunny", icon: "☀️" },
+            "Lakeland, FL": { high: 93, low: 75, description: "Very hot and sunny", icon: "☀️" },
             "Default": { high: 80, low: 60, description: "Pleasant weather", icon: "😊" }
         };
 
@@ -397,15 +415,11 @@
             }
 
             try {
-                // Simulate a network delay to mimic a real API call
                 await new Promise(resolve => setTimeout(resolve, 500)); 
-
                 const weatherJson = mockWeatherData[city] || mockWeatherData["Default"];
-                
-                // Save the mock data to state so it persists on the page
                 updateStateForDay(dayIndex, 'weather', weatherJson);
+                // FIX: Use weatherJson.description instead of weatherState.description
                 return `<p class="text-4xl">${weatherJson.icon} ${weatherJson.high}°F</p><p class="text-blue-700">${weatherJson.description}</p>`;
-
             } catch (error) {
                 console.error("Weather creation error:", error);
                 return "Could not load weather.";
@@ -438,7 +452,6 @@
                 input.addEventListener('change', (e) => {
                     const file = e.target.files[0];
                     if (!file) return;
-
                     const reader = new FileReader();
                     reader.onload = (event) => {
                         const stopLocation = e.target.dataset.stopLocation;
@@ -446,10 +459,32 @@
                         photoState[stopLocation] = event.target.result;
                         updateStateForDay(dayIndex, 'photos', photoState);
                         
-                        const label = e.target.previousElementSibling;
-                        label.innerHTML = `<img src="${event.target.result}" alt="Uploaded photo for ${stopLocation}">`;
+                        const container = e.target.closest('.photo-upload-container');
+                        const stopIndex = container.id.split('-')[2];
+                        const stopData = itineraryData[dayIndex].stops[stopIndex];
+                        container.innerHTML = renderPhotoUploader(dayIndex, stopData, stopIndex);
+                        // Re-add listeners for the new content
+                        addEventListeners(dayIndex);
                     };
                     reader.readAsDataURL(file);
+                });
+            });
+
+            // Remove Photo
+            document.querySelectorAll('.remove-photo-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault(); // Prevent label click
+                    const stopLocation = e.target.dataset.stopLocation;
+                    const photoState = getStateForDay(dayIndex, 'photos', {});
+                    delete photoState[stopLocation];
+                    updateStateForDay(dayIndex, 'photos', photoState);
+
+                    const container = e.target.closest('.photo-upload-container');
+                    const stopIndex = container.id.split('-')[2];
+                    const stopData = itineraryData[dayIndex].stops[stopIndex];
+                    container.innerHTML = renderPhotoUploader(dayIndex, stopData, stopIndex);
+                    // Re-add listeners for the new content
+                    addEventListeners(dayIndex);
                 });
             });
         }
