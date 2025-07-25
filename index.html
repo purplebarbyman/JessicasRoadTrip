@@ -146,55 +146,61 @@
         // --- DATA ---
         const itineraryData = [
             {
-                day: 1, date: "Friday, July 25", title: "Lakeland, FL → Georgia",
-                weatherLocation: "Macon, GA",
-                stops: [
-                    { location: "Gainesville, FL", duration: "2.5 hrs from Lakeland", coords: [29.6516, -82.3248], activities: [ { type: 'outdoor', name: "Devil’s Millhopper Geological State Park", details: "Explore a unique sinkhole via boardwalks. ($)", url: "https://www.floridastateparks.org/parks-and-trails/devils-millhopper-geological-state-park" }, { type: 'outdoor', name: "Depot Park", details: "Adventure playground and a fun splash pad. (Free)", url: "https://www.depotpark.org/" }, { type: 'outdoor', name: "Paynes Prairie Preserve", details: "Spot wild bison/horses from an observation tower. ($)", url: "https://www.floridastateparks.org/parks-and-trails/paynes-prairie-preserve-state-park" }, { type: 'indoor', name: "Splitz Bowling", details: "Bowling, arcade, and laser tag fun. ($$)", url: "https://www.splitzbowling.com/gainesville-fl" }, { type: 'indoor', name: "Cade Museum for Creativity & Invention", details: "Hands-on STEAM exhibits. ($)", url: "https://www.cademuseum.org/" }, ], food: [ { name: "Blue Highway a Pizzeria", cuisine: "Hand-tossed pizza ($$)", url: "https://www.bluehighwaypizza.com/" }, { name: "Chuy’s Mexican Restaurant", cuisine: "Festive Tex-Mex ($$)", url: "https://www.chuys.com/" }, { name: "Cracker Barrel", cuisine: "Classic comfort food ($)", url: "https://www.crackerbarrel.com/" }, ] },
-                    { location: "Macon, GA", duration: "3 hrs from Gainesville", coords: [32.8407, -83.6324], activities: [ { type: 'outdoor', name: "Ocmulgee Mounds National Historical Park", details: "Learn about Native American history on scenic trails. (Free)", url: "https://www.nps.gov/ocmu/index.htm" }, { type: 'outdoor', name: "Amerson River Park", details: "Playgrounds, splash pad, and walking trails. (Free)", url: "https://visitmacon.org/directory/amerson-river-park/" }, { type: 'indoor', name: "Museum of Arts and Sciences", details: "Planetarium and hands-on exhibits. ($)", url: "https://www.masmacon.org/" }, { type: 'indoor', name: "Pin Strikes", details: "Bowling, arcade, and laser tag. ($$)", url: "https://pinstrikes.com/location/macon/" }, ], food: [ { name: "The Rookery", cuisine: "Famous burgers and shakes ($$)", url: "https://www.rookerymacon.com/" }, { name: "Nu-Way Weiners", cuisine: "Iconic local hot dogs ($)", url: "http://www.nu-wayweiners.com/" }, { name: "S & S Cafeteria", cuisine: "Southern comfort buffet ($)", url: "https://www.sscafeterias.com/" }, ] }
-                ],
-                lodging: { location: "Overnight in Atlanta, GA area", suggestions: [ { name: "Drury Inn & Suites Atlanta Morrow", url: "https://www.druryhotels.com/locations/atlanta-ga/drury-inn-and-suites-atlanta-morrow" }, { name: "Holiday Inn Express & Suites Atlanta Airport", url: "https://www.ihg.com/holidayinnexpress/hotels/us/en/atlanta/atlap/hoteldetail" } ] }
-            },
-            {
-                day: 2, date: "Saturday, July 26", title: "Atlanta, GA → Tennessee",
+                day: 1, date: "Saturday, July 26", title: "Lakeland, FL → Chattanooga, TN",
                 weatherLocation: "Chattanooga, TN",
                 stops: [
-                    { location: "Atlanta, GA", duration: "Morning Activities", coords: [33.7490, -84.3880], activities: [ { type: 'outdoor', name: "Centennial Olympic Park", details: "Iconic park with fountains and a playground. (Free)", url: "https://www.gwcca.org/centennial-olympic-park" }, { type: 'outdoor', name: "PATH’s South Peachtree Creek Trail", details: "Urban hike with boardwalks and wildlife. (Free)", url: "https://pathfoundation.org/trails/south-peachtree-creek-trail/" }, { type: 'outdoor', name: "Vickery Creek Trail & Waterfall", details: "Scenic trail in Roswell with a covered bridge and waterfall. (Free)", url: "https://www.nps.gov/chat/planyourvisit/vickery-creek.htm" }, { type: 'indoor', name: "Georgia Aquarium", details: "A world-class aquarium experience. ($$$)", url: "https://www.georgiaaquarium.org/" }, { type: 'indoor', name: "LEGO Discovery Center", details: "Indoor play, rides, and building fun. ($$$)", url: "https://www.legodiscoverycenter.com/atlanta/" }, ], food: [ { name: "Atlanta Breakfast Club", cuisine: "Top-tier Southern breakfast ($$)", url: "https://www.atlantabreakfastclub.com/" }, { name: "Egg Harbor Café", cuisine: "Pancakes, omelets, and more ($$)", url: "https://www.eggharborcafe.com/" }, { name: "Woody’s Cheesesteaks", cuisine: "Classic diner breakfast/lunch ($)", url: "https://www.woodyscheesesteaks.com/" }, ] },
-                    { location: "Chattanooga, TN", duration: "2 hrs from Atlanta", coords: [35.0456, -85.3097], activities: [ { type: 'outdoor', name: "Walnut Street Bridge", details: "Walk this pedestrian bridge with great river views. (Free)", url: "https://visitchattanooga.com/listing/walnut-street-bridge/210/" }, { type: 'outdoor', name: "Coolidge Park", details: "Ride the antique carousel and play in the fountains. ($)", url: "https://chattanooga.gov/parks/coolidge-park" }, { type: 'indoor', name: "Tennessee Aquarium", details: "Explore both the River Journey and Ocean Journey buildings. ($$$)", url: "https://tnaqua.org/" }, { type: 'indoor', name: "Creative Discovery Museum", details: "Excellent hands-on museum for kids. ($$)", url: "https://www.cdmfun.org/" }, { type: 'indoor', name: "High Point Climbing", details: "Indoor climbing with a dedicated kid zone. ($$)", url: "https://highpointclimbing.com/chattanooga/" }, ], food: [ { name: "Good Dog", cuisine: "Gourmet hot dogs & fries ($)", url: "https://www.eatgooddog.com/" }, { name: "The Blue Plate", cuisine: "Classic diner with all-day breakfast ($$)", url: "https://theblueplate.info/" }, { name: "Champy’s Fried Chicken", cuisine: "Famous fried chicken ($$)", url: "https://champyschicken.com/" }, ] }
+                    { 
+                        location: "Chattanooga, TN", 
+                        duration: "Approx. 8-hour drive from Lakeland", 
+                        coords: [35.0456, -85.3097], 
+                        activities: [ 
+                            { type: 'outdoor', name: "Walnut Street Bridge", details: "Walk this pedestrian bridge with great river views. (Free)", url: "https://visitchattanooga.com/listing/walnut-street-bridge/210/" }, 
+                            { type: 'outdoor', name: "Coolidge Park", details: "Ride the antique carousel and play in the fountains. ($)", url: "https://chattanooga.gov/parks/coolidge-park" }, 
+                            { type: 'indoor', name: "Tennessee Aquarium", details: "Explore both the River Journey and Ocean Journey buildings. ($$$)", url: "https://tnaqua.org/" }, 
+                            { type: 'indoor', name: "Creative Discovery Museum", details: "Excellent hands-on museum for kids. ($$)", url: "https://www.cdmfun.org/" }, 
+                            { type: 'indoor', name: "High Point Climbing", details: "Indoor climbing with a dedicated kid zone. ($$)", url: "https://highpointclimbing.com/chattanooga/" } 
+                        ], 
+                        food: [ 
+                            { name: "Good Dog", cuisine: "Gourmet hot dogs & fries ($)", url: "https://www.eatgooddog.com/" }, 
+                            { name: "The Blue Plate", cuisine: "Classic diner with all-day breakfast ($$)", url: "https://theblueplate.info/" }, 
+                            { name: "Champy’s Fried Chicken", cuisine: "Famous fried chicken ($$)", url: "https://champyschicken.com/" } 
+                        ] 
+                    }
                 ],
                 lodging: { location: "Arrive at Sevierville/Pigeon Forge/Gatlinburg", suggestions: [{ name: "Check-in at your accommodation and get settled!", url: null }] }
             },
             {
-                day: 3, date: "Sunday, July 27", title: "SkyLand Ranch Fun",
+                day: 2, date: "Sunday, July 27", title: "SkyLand Ranch Fun",
                 weatherLocation: "Sevierville, TN",
                 stops: [ { location: "Sevierville, TN", duration: "All Day", coords: [35.8659, -83.5596], activities: [ { type: 'main', name: "SkyLand Ranch", details: "Mountain coaster, animal encounters, and shops. ($$$)", url: "https://www.skylandranch.com/" }, { type: 'outdoor', name: "Jayell Ranch", details: "Ziplining, horseback riding, and ATV tours. ($$$)", url: "https://www.jayellranch.com/" }, { type: 'outdoor', name: "Great Smoky Mountains National Park", details: "Go for a hike or have a picnic. (Free)", url: "https://www.nps.gov/grsm/index.htm" }, { type: 'indoor', name: "Rainforest Adventures Discovery Zoo", details: "See over 600 animals. ($$)", url: "https://www.rainforestadventures.com/" }, { type: 'indoor', name: "Sevier Air Trampoline & Ninja Park", details: "Jump and play! ($$)", url: "https://sevierair.com/" }, ], food: [ { name: "Five Oaks Farm Kitchen", cuisine: "Hearty Southern comfort food ($$)", url: "https://fiveoaksfarmkitchen.com/" }, { name: "Holston’s Kitchen", cuisine: "Steaks, burgers, and Mexican ($$)", url: "https://www.holstonskitchen.com/" }, { name: "Big Daddy’s Pizzeria", cuisine: "Wood-fired pizza ($$)", url: "https://www.bigdaddyspizzeria.net/" }, { name: "Fuddruckers", cuisine: "Build-your-own burgers ($)", url: "https://www.fuddruckers.com/" }, ] } ]
             },
             {
-                day: 4, date: "Monday, July 28", title: "Caves & Cades Cove",
+                day: 3, date: "Monday, July 28", title: "Caves & Cades Cove",
                 weatherLocation: "Townsend, TN",
                 stops: [ { location: "Smoky Mountains Area", duration: "All Day", coords: [35.7718, -83.7543], activities: [ { type: 'main', name: "Cades Cove Scenic Loop", details: "11-mile scenic drive. Look for wildlife! (Free)", url: "https://www.nps.gov/grsm/planyourvisit/cadescovelooproad.htm" }, { type: 'main', name: "Forbidden Caverns", details: "Guided tour of a beautiful cave. ($$)", url: "https://forbiddencavern.com/" }, { type: 'outdoor', name: "Abrams Falls Trail", details: "Family-friendly hike to a waterfall in Cades Cove. (Free)", url: "https://www.nps.gov/grsm/planyourvisit/abrams-falls.htm" }, { type: 'outdoor', name: "Cades Cove Riding Stables", details: "Go for a guided horseback ride. ($$$)", url: "https://cadescovestables.com/" }, { type: 'indoor', name: "Ripley’s Old MacDonald’s Farm Mini-Golf", details: "Fun indoor/outdoor mini-golf. ($)", url: "https://www.ripleys.com/gatlinburg/old-macdonalds-farm-mini-golf/" }, ], food: [ { name: "The Old Mill Restaurant", cuisine: "Historic Southern fare ($$$)", url: "https://old-mill.com/the-old-mill-restaurant/" }, { name: "Mama’s Farmhouse", cuisine: "All-you-can-eat family-style Southern food ($$$)", url: "https://www.mamasfarmhouse.com/" }, { name: "Bennett’s Pit Bar-B-Que", cuisine: "Ribs, pulled pork, and more ($$)", url: "https://bennetts-bbq.com/" }, ] } ]
             },
             {
-                day: 5, date: "Tuesday, July 29", title: "Views, Gems & Pirates",
+                day: 4, date: "Tuesday, July 29", title: "Views, Gems & Pirates",
                 weatherLocation: "Pigeon Forge, TN",
                 stops: [ { location: "Pigeon Forge / Gatlinburg", duration: "All Day", coords: [35.7884, -83.5543], activities: [ { type: 'main', name: "Clingmans Dome", details: "Hike to the highest peak in the Smokies for 360° views. (Free)", url: "https://www.nps.gov/grsm/planyourvisit/clingmansdome.htm" }, { type: 'main', name: "Gem Mining", details: "A fun family activity. ($$)", url: "https://pfgemmine.com/" }, { type: 'main', name: "Hollywood Wax Museum", details: "Pose with your favorite stars. ($$$)", url: "https://www.hollywoodwaxmuseum.com/pigeon-forge/" }, { type: 'main', name: "Pirates Voyage Dinner & Show", details: "An exciting dinner show. ($$$)", url: "https://piratesvoyage.com/pigeon-forge/" }, { type: 'outdoor', name: "Laurel Falls Trail", details: "Easy, paved hike to a beautiful waterfall. (Free)", url: "https://www.nps.gov/grsm/planyourvisit/laurel-falls.htm" }, { type: 'indoor', name: "WonderWorks", details: "An 'edu-tainment' amusement park for the mind. ($$$)", url: "https://www.wonderworksonline.com/pigeon-forge/" }, ], food: [ { name: "Frizzle Chicken Farmhouse Café", cuisine: "Breakfast/lunch with animatronic chickens ($$)", url: "https://frizzlechickenfarmhousecafe.com/" }, { name: "Downtown Flavortown", cuisine: "Guy Fieri’s spot with an arcade ($$$)", url: "https://downtownflavortown.com/" }, { name: "Local Goat", cuisine: "New American with great burgers ($$)", url: "https://www.localgoatpf.com/" }, ] } ]
             },
             {
-                day: 6, date: "Wednesday, July 30", title: "Splash Country!",
+                day: 5, date: "Wednesday, July 30", title: "Splash Country!",
                 weatherLocation: "Pigeon Forge, TN",
                 stops: [ { location: "Pigeon Forge, TN", duration: "All Day", coords: [35.7884, -83.5543], activities: [ { type: 'main', name: "Dollywood’s Splash Country", details: "Cool off at this huge waterpark. ($$$)", url: "https://www.dollywood.com/waterpark/" }, { type: 'outdoor', name: "Smoky Mountain River Rat", details: "Relaxing river tubing adventure. ($$)", url: "https://smokymtnriverrat.com/" }, { type: 'indoor', name: "Wild Bear Falls Indoor Water Park", details: "A great backup plan for a rainy day. ($$)", url: "https://www.wgwildbearfalls.com/" }, { type: 'indoor', name: "Arcade City", details: "A large arcade at The Island. ($$)", url: "https://faceamusement.com/experiences/arcade-city/" }, ], food: [ { name: "Mel’s Diner", cuisine: "Classic 50s diner experience ($)", url: "https://melsdinerpf.com/" }, { name: "Paula Deen’s Family Kitchen", cuisine: "Family-style Southern cooking ($$$)", url: "https://pauladeensfamilykitchen.com/" }, { name: "Mama’s Farmhouse", cuisine: "If you haven't been yet, now's the time! ($$$)", url: "https://www.mamasfarmhouse.com/" }, ] } ]
             },
             {
-                day: 7, date: "Thursday, July 31", title: "Dollywood Day",
+                day: 6, date: "Thursday, July 31", title: "Dollywood Day",
                 weatherLocation: "Pigeon Forge, TN",
                 stops: [ { location: "Pigeon Forge, TN", duration: "All Day", coords: [35.7884, -83.5543], activities: [ { type: 'main', name: "Dollywood Amusement Park", details: "World-class rides, shows, and crafts. ($$$)", url: "https://www.dollywood.com/" }, { type: 'outdoor', name: "Smoky Mountain Alpine Coaster", details: "A thrilling ride down the mountain. ($$)", url: "https://www.smokymountainalpinecoaster.com/" }, { type: 'indoor', name: "Titanic Museum Attraction", details: "An interactive and moving experience. ($$$)", url: "https://titanicpigeonforge.com/" }, { type: 'indoor', name: "The Escape Game Pigeon Forge", details: "Work together to solve puzzles. ($$$)", url: "https://theescapegame.com/pigeon-forge/" }, ], food: [ { name: "Bennett’s Pit Bar-B-Que", cuisine: "Great BBQ spot ($$)", url: "https://bennetts-bbq.com/" }, { name: "Big Daddy’s Pizzeria", cuisine: "Another chance for wood-fired pizza ($$)", url: "https://www.bigdaddyspizzeria.net/" }, { name: "Food from Dollywood", cuisine: "Try the famous cinnamon bread! ($)", url: "https://www.dollywood.com/themepark/dining" }, ] } ]
             },
             {
-                day: 8, date: "Friday, August 1", title: "Lumberjack Feud",
+                day: 7, date: "Friday, August 1", title: "Lumberjack Feud",
                 weatherLocation: "Pigeon Forge, TN",
                 stops: [ { location: "Pigeon Forge, TN", duration: "All Day", coords: [35.7884, -83.5543], activities: [ { type: 'main', name: "Paula Deen’s Lumberjack Feud Show & Adventure Park", details: "Watch lumberjacks compete, then try challenges yourself. ($$$)", url: "https://lumberjackfeud.com/" }, { type: 'outdoor', name: "Goats on the Roof", details: "A quirky stop with a coaster, and goats! ($)", url: "https://www.goatsontheroofofthesmokies.com/" }, { type: 'outdoor', name: "Crave Golf Club", details: "A highly-rated and fun mini-golf course. ($$)", url: "https://www.cravegolf.com/" }, { type: 'indoor', name: "Ripley’s Believe It or Not!", details: "Explore the odd and unusual. ($$$)", url: "https://www.ripleys.com/gatlinburg/odditorium/" }, ], food: [ { name: "Holston’s Kitchen", cuisine: "A reliable favorite ($$)", url: "https://www.holstonskitchen.com/" }, { name: "Five Oaks Farm Kitchen", cuisine: "Perfect for a final Southern meal ($$)", url: "https://fiveoaksfarmkitchen.com/" }, { name: "Big Daddy’s Pizzeria", cuisine: "One last pizza pie! ($$)", url: "https://www.bigdaddyspizzeria.net/" }, ] } ]
             },
             {
-                day: 9, date: "Saturday, August 2", title: "Drive Home to Lakeland, FL",
+                day: 8, date: "Saturday, August 2", title: "Drive Home to Lakeland, FL",
                 weatherLocation: "Lakeland, FL",
                 stops: [
                     { 
@@ -418,7 +424,6 @@
                 await new Promise(resolve => setTimeout(resolve, 500)); 
                 const weatherJson = mockWeatherData[city] || mockWeatherData["Default"];
                 updateStateForDay(dayIndex, 'weather', weatherJson);
-                // FIX: Use weatherJson.description instead of weatherState.description
                 return `<p class="text-4xl">${weatherJson.icon} ${weatherJson.high}°F</p><p class="text-blue-700">${weatherJson.description}</p>`;
             } catch (error) {
                 console.error("Weather creation error:", error);
